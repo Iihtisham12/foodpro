@@ -1,0 +1,78 @@
+{% extends "receipevege/base.html" %}
+
+{% block title %}
+  Recipe
+{% endblock %}
+
+{% block content %}
+    <div class="container-fulid mt-5 ">
+         <div class="row">
+            <div class="col-sm-8 offset-2">
+              {% if messages %}
+              <div class="alert alert-danger col-lg-12" role="alert">
+                     {% for msg in messages %}
+                            {{msg}}
+                     {% endfor %}
+              </div>
+              {% endif %}
+                <h2 class="text-center">User : {{ request.user }} </h2>
+                <form action="#" method="POST" enctype="multipart/form-data" class="shadow p-3 col-8 m-auto shadow">
+                  <h3 class="p-2 text-center bg-light p-3">Add Receipe</h3>
+                    {% csrf_token %}
+                  
+                    <div class="mb-3">
+                        <label for="receipename" class="form-label p-2">ReceipeName</label>
+                        <input type="text"  name="re_name" class="form-control" required id="receipename">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea type="text" name="re_description" id="description" required class="form-control"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="receiprice" class="form-label">ReceipePrice</label>
+                      <input type="number"  name="re_price" class="form-control" required id="receiprice">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="receimage" class="form-label">ReceipeImage</label>
+                      <input type="file"  name="re_images" class="form-control" required id="receimage">
+                    </div>
+                    <button type="submit" class="btn btn-success mb-4">Add Receipe</button>
+                </form>
+                  <hr>
+                  
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"> Id </th>
+                            <th scope="col">ReceipeName</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">ReceieImage</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      {% for data in qdata %}
+                        <tr>
+                            <th scope="row"> {{forloop.counter}} </th>
+                            <td> {{data.re_name}} </td>
+                            <td>{{ data.re_description }}</td>
+                            <td>Rs:{{ data.re_price }}</td>
+                            <td><img src="/media/{{ data.re_images }} " alt="NoImaage" style="height:120px"></td>
+                            <td>
+                              <a href="{% url "UpdateData" data.id %}" class="btn btn-success btn-lg mt-2">Edit</a>
+                              <a href="{% url "DeleteReceipe" data.id %}" class="btn btn-danger mt-3">Delete</a>
+                            </td>   
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+   
+{% endblock  %}

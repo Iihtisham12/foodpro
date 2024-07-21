@@ -1,0 +1,43 @@
+{% extends "receipevege/base.html" %}
+
+{% block title %}SingUp{% endblock %}
+
+{% block content %}
+       <div class="containter-fulid">
+              <div class="row mt-4 p-3">
+                     <div class="col-lg-6 m-auto bg-light p-2 text-center shadow">
+                            <h3 class="p-3">SIngUp</h3>
+                            <hr>
+                            <form action="#" method="POST" class="col-6 m-auto bg-light text-black ">
+                                   {% csrf_token %}
+                                   {% if messages %}
+                                   <div class="alert alert-danger" role="alert">
+                                          {% for msg in messages %}
+                                                 {{msg}}
+                                          {% endfor %}
+                                   </div>
+                                   {% endif %}
+
+                                   <div class="mb-3">
+                                          <label for="uname" class="form-label">UserName</label>
+                                          <input type="text" class="form-control" id="uname" name="username" aria-describedby="emailHelp">                
+                                   </div>
+                                   <div class="mb-3">
+                                          <label for="fname" class="form-label">FIrst Name</label>
+                                          <input type="text" class="form-control" id="fname" name="first_name" aria-describedby="emailHelp">                
+                                   </div>
+                                   <div class="mb-3">
+                                          <label for="lname" class="form-label">Last Name</label>
+                                          <input type="text" class="form-control" id="lname" name="last_name" aria-describedby="emailHelp">                
+                                   </div>
+                                   <div class="mb-3">
+                                          <label for="upass" class="form-label">Password</label>
+                                          <input type="password" class="form-control" id="upass" name="password">
+                                   </div>
+                                   <p>Already Have account <a href="{% url "LoginPage" %}">Login</a></p>
+                                   <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                            </form>
+                     </div>
+              </div>
+       </div>
+{% endblock %}

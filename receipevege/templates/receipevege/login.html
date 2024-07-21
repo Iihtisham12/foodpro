@@ -1,0 +1,24 @@
+{% extends "receipevege/base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <div class="contanier mt-5">
+        <form action="#" method="POST" class="col-lg-6 m-auto shadow-lg card bg-light" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <h3 class="text-center py-2">Login</h3>
+            <hr>
+            <div class="mb-4">
+                <label for="exampleInputEmail1" class="form-label mx-2">UserName</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="username" >
+            </div>
+            <div class="mb-4">
+                <label for="exampleInputPassword1" class="form-label mx-2">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            </div>
+            <p class="text-center">Dont'have account <a href="{% url "SingUpPage" %}" >register</a></p>
+            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+        </form>
+    </div>
+{% endblock %}

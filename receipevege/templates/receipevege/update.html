@@ -1,0 +1,43 @@
+{% extends "receipevege/base.html" %}
+
+{% block title %}Recipe{% endblock %}
+
+{% block content %}
+    <div class="container-fulid ">
+        <h2 class="alert-danger bg-dark  text-white text-center p-3 shadow">Simple Receipe in Project</h2>
+        <div class="row">
+          
+            <div class="col-sm-8 offset-2">
+                
+                <form action="#" method="POST" enctype="multipart/form-data" class="shadow p-3 col-8 m-auto shadow">
+                  <h3 class="p-2 text-center bg-light p-3">Update Receipe</h3>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="receipename" class="form-label p-2">ReceipeName</label>
+                        <input type="text"  name="re_name" class="form-control" value="{{ qdata.re_name }}" required id="receipename">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea type="text" name="re_description" id="description" value="" required class="form-control">{{ qdata.re_description }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="receiprice" class="form-label">ReceipePrice</label>
+                      <input type="number"  name="re_price" class="form-control"  value="{{ qdata.re_price }}"  required id="receiprice">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="receimage" class="form-label">ReceipeImage</label>
+                      <input type="file"  name="re_images" class="form-control"   value=" {{ qdata.re_image }} "  required id="receimage">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Update Receipe</button>
+                </form>
+
+            </div>
+        </div>
+        
+    </div>
+   
+{% endblock  %}
